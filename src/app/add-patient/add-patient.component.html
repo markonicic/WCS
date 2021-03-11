@@ -1,0 +1,165 @@
+<div class="container">
+  <mat-card>
+    <h1 class="title">Add new patient</h1>
+    <hr />
+    <div class="data-wrapper">
+      <form class="example-form" [formGroup]="advancedForm" novalidate>
+        <table class="example-full-width" cellspacing="0">
+          <tr class="tr">
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>First name</mat-label>
+                <input matInput formControlName="firstName" required />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" required />
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <table class="example-full-width" cellspacing="0">
+          <tr class="tr">
+            <td>
+              <mat-form-field>
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="birthDate" required />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>VAT Number</mat-label>
+                <input type="text" matInput formControlName="vatCode" placeholder="Ex. 123456789" required />
+                <mat-error
+                  *ngIf="
+                    advancedForm.get('vatCode').hasError('vatCode') && !advancedForm.get('vatCode').hasError('required')
+                  "
+                >
+                  VAT code <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <table class="example-full-width" cellspacing="0">
+          <tr class="tr">
+            <td>
+              <mat-form-field>
+                <mat-label>Doctor</mat-label>
+                <mat-select formControlName="doctor">
+                  <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
+                    {{ doctor.firstName }}&nbsp;{{ doctor.lastName }},&nbsp;{{ doctor.title }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com" required />
+                <mat-error
+                  *ngIf="advancedForm.get('email').hasError('email') && !advancedForm.get('email').hasError('required')"
+                >
+                  Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="advancedForm.get('email').hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <ng-container formArrayName="homeAddress" *ngFor="let address of f.controls; let i = index">
+          <table
+            style="display: block; margin-top: 1rem"
+            class="example-full-width"
+            cellspacing="0"
+            [formGroupName]="i"
+          >
+            <tr class="tr">
+              <td>
+                <h5 *ngIf="i === 0">Home Address</h5>
+                <h5 *ngIf="i !== 0">Aditional Address</h5>
+              </td>
+              <td *ngIf="i === 0">
+                <mat-form-field>
+                  <mat-label>Address type</mat-label>
+                  <mat-select formControlName="type">
+                    <mat-option value="HOME"> Home </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td *ngIf="i !== 0">
+                <mat-form-field>
+                  <mat-label>Address type</mat-label>
+                  <mat-select formControlName="type">
+                    <mat-option *ngFor="let type of addressTypes" [value]="type.value">
+                      {{ type.key }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class="tr">
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Address</mat-label>
+                  <textarea matInput placeholder="Ex. 100 Main St" formControlName="address" required></textarea>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Telephone</mat-label>
+                  <span matPrefix>+39 &nbsp;</span>
+                  <input type="tel" matInput placeholder="555-1234" formControlName="phone" required />
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>City</mat-label>
+                  <input matInput placeholder="Ex. San Francisco" formControlName="city" required />
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Country</mat-label>
+                  <input matInput placeholder="Ex. USA" formControlName="country" required />
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Postal Code</mat-label>
+                  <input
+                    matInput
+                    #postalCode
+                    maxlength="5"
+                    placeholder="Ex. 94105"
+                    formControlName="zipcode"
+                    required
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </ng-container>
+      </form>
+      <button mat-stroked-button (click)="onAddAddress()" role="button" [disabled]="!advancedForm.valid">
+        Add another address
+      </button>
+    </div>
+    <hr />
+    <div class="contols">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!advancedForm.valid" (click)="savePatient()">
+        SAVE
+      </button>
+    </div>
+  </mat-card>
+</div>

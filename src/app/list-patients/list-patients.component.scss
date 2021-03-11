@@ -1,0 +1,28 @@
+.container {
+  padding: 2.5% 15%;
+
+  .sticky-container {
+    overflow: auto;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .row {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  td,
+  th {
+    width: 25%;
+    padding: 6px 26px;
+  }
+}

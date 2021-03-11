@@ -1,0 +1,35 @@
+.container {
+  padding: 2.5% 15%;
+
+  .title {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .data-wrapper {
+    padding: 2.5% 5%;
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin: 1rem 0;
+
+      h4 {
+        text-transform: uppercase;
+        font-weight: 500;
+        margin: 0.5rem;
+        height: fit-content;
+      }
+
+      h5 {
+        text-transform: initial;
+        font-weight: 400;
+        margin: 0.5rem;
+        height: fit-content;
+        margin-left: 1rem;
+      }
+    }
+  }
+}

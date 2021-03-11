@@ -1,0 +1,50 @@
+<div fxFlex>
+  <mat-sidenav-container fxFill>
+    <mat-sidenav #sidenav [mode]="'over'" ngClass.gt-sm="has-border">
+      <mat-toolbar color="warn">
+        <span translate>APP_NAME</span>
+        <div fxFlex></div>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="userMenu">
+            <mat-icon>person</mat-icon>
+          </button>
+          <mat-menu #userMenu="matMenu">
+            <mat-list>
+              <mat-list-item>
+                <span translate>Logged in as</span>&nbsp;<b>{{ username }}</b>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </mat-list>
+            <button mat-menu-item (click)="logout()" translate>Logout</button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+      <nav>
+        <mat-list>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()">
+            <span translate>Home</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/add-patient" routerLinkActive="active" (click)="sidenav.close()">
+            <span translate>Add New Patient</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/list-patients" routerLinkActive="active" (click)="sidenav.close()">
+            <span translate>List Patients</span>
+          </a>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="warn" class="mat-elevation-z6">
+        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>{{ title }}</span>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
