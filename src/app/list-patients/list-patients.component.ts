@@ -1,16 +1,17 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Patients } from '@app/@shared/interfaces/patients.model';
 import { ListPatientsService } from './list-patients.service';
 
-export interface UserData {
+export interface ShowPatient {
   id: number;
   name: string;
   registeredDate: string;
   doctor: string;
-  homeAddress: number;
+  homeAddress: string;
 }
 
 @Component({
@@ -19,11 +20,11 @@ export interface UserData {
   styleUrls: ['./list-patients.component.scss'],
 })
 export class ListPatientsComponent implements OnInit, AfterViewInit {
-  data: any;
+  patients: Patients[];
   doctors: Array<any>;
 
   displayedColumns: string[] = ['name', 'registeredDate', 'doctor', 'homeAddress'];
-  dataSource: MatTableDataSource<UserData>;
+  dataSource: MatTableDataSource<ShowPatient>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -31,25 +32,31 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private listPatientsService: ListPatientsService) {}
 
   ngOnInit(): void {
-    this.getData();
+    // this.getData();
   }
 
   getData(): void {
-    this.data = this.listPatientsService.getPatients();
-    this.doctors = this.listPatientsService.getDoctors();
-    const users = Array.from({ length: this.data.length - 1 }, (_, k) => this.createNewUser(k));
+    this.listPatientsService.getPatients().subscribe((data) => {
+      this.patients = data;
+      this.listPatientsService.getDoctors().subscribe((data) => {
+        this.doctors = data;
+        const users = Array.from({ length: this.patients.length - 1 }, (_, k) => this.createNewUser(k));
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+        // Assign the data to the data source for the table to render
+        this.dataSource = new MatTableDataSource(users);
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        });
+      });
+    });
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.getData();
   }
 
   onRowClick(row: any): void {
-    this.listPatientsService.singlePatient = row;
     this.router.navigateByUrl(`list-patients/${row.id}`);
   }
 
@@ -62,17 +69,17 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  /** Builds and returns a new User. */
-  createNewUser(i: number): UserData {
+  /** Builds and returns a new Patient to list. */
+  createNewUser(i: number): ShowPatient {
     const patientDoctor = this.doctors.find((element) => {
-      return element.id === this.data[i].doctor;
+      return element.id === this.patients[i].doctor;
     });
     return {
-      id: this.data[i].id,
-      name: this.data[i].firstName + ' ' + this.data[i].lastName,
-      registeredDate: this.data[i].registeredDate,
+      id: this.patients[i].id,
+      name: this.patients[i].firstName + ' ' + this.patients[i].lastName,
+      registeredDate: this.patients[i].registeredDate,
       doctor: patientDoctor.firstName + ' ' + patientDoctor.lastName,
-      homeAddress: this.data[i].addresses[0].street,
+      homeAddress: this.patients[i].addresses[0].street,
     };
   }
 }

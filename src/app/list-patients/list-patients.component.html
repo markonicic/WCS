@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="dataSource">
   <mat-form-field>
     <mat-label>Find the patient</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Marko" #input />
@@ -16,7 +16,7 @@
         <!-- Registration Date Column -->
         <ng-container matColumnDef="registeredDate">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration Date</th>
-          <td mat-cell *matCellDef="let row">{{ row.registeredDate | date: 'medium' }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.registeredDate | date: 'mediumDate' }}</td>
         </ng-container>
 
         <!-- Doctor Column -->

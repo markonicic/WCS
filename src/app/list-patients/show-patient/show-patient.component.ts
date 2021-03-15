@@ -1,9 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Doctors } from '@app/@shared/interfaces/doctors.model';
+import { Patient } from '@app/@shared/interfaces/patient.model';
 import { ListPatientsService } from '../list-patients.service';
 
 export interface UserData {
@@ -20,26 +18,49 @@ export interface UserData {
   styleUrls: ['./show-patient.component.scss'],
 })
 export class ShowPatientComponent implements OnInit {
-  patient: any;
-  patientDoctor: any;
-  patientData: Array<any>;
-  doctors: Array<any>;
+  patient: Patient;
+  doctors: Doctors[];
+  title: string;
+  mode: string;
+  patientId: number;
 
-  constructor(private listPatientsService: ListPatientsService, private router: Router) {}
+  constructor(
+    private listPatientsService: ListPatientsService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    const singleData = this.listPatientsService.singlePatient;
-    if (singleData) {
-      this.patientData = this.listPatientsService.getPatients();
-      this.doctors = this.listPatientsService.getDoctors();
-      this.patient = this.patientData.find((element) => {
-        return element.id === singleData.id;
-      });
-      this.patientDoctor = this.doctors.find((element) => {
-        return element.id === this.patient.doctor;
-      });
-    } else {
-      this.router.navigateByUrl('list-patients');
-    }
+    this.title = 'Patient Info';
+    this.mode = 'show';
+
+    this.patientId = +this.activatedRoute.snapshot.paramMap.get('id');
+
+    this.listPatientsService.getSinglePatient(this.patientId).subscribe((data: Patient) => {
+      this.patient = data;
+    });
+
+    this.listPatientsService.getDoctors().subscribe((data) => {
+      this.doctors = data;
+    });
+  }
+
+  editPatient(e: any): void {
+    const choosenDoktor = e.doctor;
+    this.doctors.filter((data) => {
+      const element = data.firstName + ' ' + data.lastName + ', ' + data.title;
+      if (element === choosenDoktor) {
+        e.doctor = data.id;
+      }
+    });
+
+    console.log('edit patient', e);
+  }
+
+  deletePatient(e: boolean): void {
+    this.listPatientsService.deleteSinglePatient(this.patientId).subscribe((data) => {
+      console.log('data deleted', data);
+      this.router.navigateByUrl('/');
+    });
   }
 }

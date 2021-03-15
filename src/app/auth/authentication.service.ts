@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '@app/@shared/interfaces/user.model';
 import { Observable, of } from 'rxjs';
 
 import { Credentials, CredentialsService } from './credentials.service';
@@ -6,6 +8,7 @@ import { Credentials, CredentialsService } from './credentials.service';
 export interface LoginContext {
   username: string;
   password: string;
+  role: string;
   remember?: boolean;
 }
 
@@ -17,7 +20,12 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService) {}
+  users: User[];
+  constructor(private credentialsService: CredentialsService, private http: HttpClient) {
+    this.getUsers().subscribe((data) => {
+      this.users = data;
+    });
+  }
 
   /**
    * Authenticates the user.
@@ -26,8 +34,10 @@ export class AuthenticationService {
    */
   login(context: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
+
     const data = {
       username: context.username,
+      role: context.role,
       token: '123456',
     };
     this.credentialsService.setCredentials(data, context.remember);
@@ -42,5 +52,9 @@ export class AuthenticationService {
     // Customize credentials invalidation here
     this.credentialsService.setCredentials();
     return of(true);
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:3000/users');
   }
 }

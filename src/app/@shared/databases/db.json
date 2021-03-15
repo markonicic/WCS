@@ -1,0 +1,386 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin",
+      "role": "ADMIN"
+    },
+    {
+      "id": "1",
+      "username": "user",
+      "password": "user",
+      "role": "USER"
+    }
+  ],
+  "patient": [
+    {
+      "firstName": "Marko",
+      "lastName": "Nicic",
+      "birthDate": "2021-03-06T23:00:00.000Z",
+      "vatCode": "595959595",
+      "email": "marko.nicic.jf@gmail.com",
+      "doctor": 1,
+      "homeAddress": [
+        {
+          "type": "HOME",
+          "address": "Heroja Maricica\n49",
+          "phone": "333555",
+          "city": "Vrnjacka Banja",
+          "country": "Serbia",
+          "zipcode": "36210"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "firstName": "Marko",
+      "lastName": "Nicic",
+      "birthDate": "1992-09-02T22:00:00.000Z",
+      "vatCode": "12312312312312",
+      "email": "marko.nicic.jf@gmail.com",
+      "doctor": "Gregory House, MD",
+      "homeAddress": [
+        {
+          "type": "HOME",
+          "name": "",
+          "address": "asdasdasd",
+          "phone": "+392342342",
+          "city": "asdas",
+          "country": "asdasd",
+          "zipcode": "adsas"
+        },
+        {
+          "type": "RELATIVE",
+          "name": "Mila",
+          "address": "Heroja Maricica\n49",
+          "phone": "+39231242134",
+          "city": "Vrnjacka Banja",
+          "country": "Serbia",
+          "zipcode": "36210"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "firstName": "Marko",
+      "lastName": "Nicic",
+      "birthDate": "1992-09-02T22:00:00.000Z",
+      "vatCode": "09080651032",
+      "email": "marko.nicic.jf@gmail.com",
+      "doctor": {
+        "id": 1,
+        "firstName": "Gregory",
+        "lastName": "House",
+        "title": "MD"
+      },
+      "homeAddress": [
+        {
+          "type": "HOME",
+          "name": "",
+          "address": "Heroja Maricica\n49",
+          "phone": "+397657657474",
+          "city": "Vrnjacka Banja",
+          "country": "asdasd",
+          "zipcode": "asdas"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "firstName": "Marko",
+      "lastName": "Nicic",
+      "birthDate": "1992-09-02T22:00:00.000Z",
+      "vatCode": "1231231231231231",
+      "email": "marko.nicic.jf@gmail.com",
+      "doctor": 1,
+      "homeAddress": [
+        {
+          "type": "HOME",
+          "name": "",
+          "address": "Heroja Maricica\n49",
+          "phone": "+397657657474",
+          "city": "Vrnjacka Banja",
+          "country": "asdasdasd",
+          "zipcode": "asdas"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "firstName": "Marko",
+      "lastName": "Nicic",
+      "birthDate": "1992-09-02T22:00:00.000Z",
+      "vatCode": "09080651032",
+      "email": "marko.nicic.jf@gmail.com",
+      "doctor": 1,
+      "homeAddress": [
+        {
+          "type": "HOME",
+          "name": "",
+          "address": "Heroja Maricica\n49",
+          "phone": "+397657657474",
+          "city": "Vrnjacka Banja",
+          "country": "asdas",
+          "zipcode": "asdas"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "firstName": "Marko",
+      "lastName": "Nicic",
+      "birthDate": "1998-02-02T23:00:00.000Z",
+      "vatCode": "",
+      "email": "marko.nicic.jf@gmail.com",
+      "doctor": 1,
+      "homeAddress": [
+        {
+          "type": "HOME",
+          "name": "",
+          "address": "Heroja Maricica\n49",
+          "phone": "+397657657474",
+          "city": "Vrnjacka Banja",
+          "country": "ufkuyg",
+          "zipcode": "65465"
+        }
+      ],
+      "id": 6
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "firstName": "Gregory",
+      "lastName": "House",
+      "title": "MD"
+    },
+    {
+      "id": 2,
+      "firstName": "Elizabeth",
+      "lastName": "Blackwell",
+      "title": "MD"
+    },
+    {
+      "id": 3,
+      "firstName": "Joseph",
+      "lastName": "Lister",
+      "title": "Surgeon"
+    },
+    {
+      "id": 4,
+      "firstName": "Eduard",
+      "lastName": "Jenner",
+      "title": "Immunologist"
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "registeredDate": "2018-10-13T23:50:12Z",
+      "firstName": "Mario",
+      "lastName": "Rossi",
+      "doctor": 1,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+3956789910",
+          "street": "Via Tiburtina 59",
+          "city": "Rome",
+          "zipcode": "00131",
+          "country": "Italy"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "registeredDate": "2018-10-12T11:23:57Z",
+      "firstName": "Francesco",
+      "lastName": "Giuliani",
+      "doctor": 3,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+3933522342234",
+          "street": "Via Casilina 72",
+          "city": "Rome",
+          "zipcode": "00186",
+          "country": "Italy"
+        },
+        {
+          "type": "WORK",
+          "email": "aaa@bb.com",
+          "phone": "+39062231124",
+          "street": "Via Cassia 823",
+          "city": "Rome",
+          "zipcode": "00192",
+          "country": "Italy"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "registeredDate": "2018-10-16T13:51:28Z",
+      "firstName": "Elico",
+      "lastName": "Maikenberg",
+      "doctor": 4,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+39781123112",
+          "street": "Piazza Risorgimento 44",
+          "city": "Rome",
+          "zipcode": "00195",
+          "country": "Italy"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "registeredDate": "2018-15-18T10:01:28Z",
+      "firstName": "Sebastian",
+      "lastName": "Leager",
+      "doctor": 2,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+39781123112",
+          "street": "test adress 111",
+          "city": "Test City",
+          "zipcode": "00197",
+          "country": "Italy"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "registeredDate": "2019-01-10T00:01:28Z",
+      "firstName": "Marko",
+      "lastName": "Nicic",
+      "doctor": 1,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+39781123112",
+          "street": "Knezevacka 16",
+          "city": "Belgrade",
+          "zipcode": "11000",
+          "country": "Serbia"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "registeredDate": "2020-03-03T13:51:28Z",
+      "firstName": "Predrag",
+      "lastName": "Kon",
+      "doctor": 4,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+39781123112",
+          "street": "Piazza Risorgimento 44",
+          "city": "Rome",
+          "zipcode": "00195",
+          "country": "Italy"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "registeredDate": "2012-10-16T13:51:28Z",
+      "firstName": "Darija",
+      "lastName": "Kisic-Tepavcevic",
+      "doctor": 1,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+39781123112",
+          "street": "Kneza Mihajla 1",
+          "city": "Belgrade",
+          "zipcode": "11000",
+          "country": "Serbia"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "registeredDate": "2017-10-16T13:51:28Z",
+      "firstName": "Branislav",
+      "lastName": "Tiodorovic",
+      "doctor": 3,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+39781123112",
+          "street": "Piazza Risorgimento 44",
+          "city": "Rome",
+          "zipcode": "00195",
+          "country": "Italy"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "registeredDate": "2018-10-16T13:51:28Z",
+      "firstName": "Elico",
+      "lastName": "Maikenberg",
+      "doctor": 2,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+39781123112",
+          "street": "Piazza Risorgimento 44",
+          "city": "Rome",
+          "zipcode": "00195",
+          "country": "Italy"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "registeredDate": "2018-10-16T13:51:28Z",
+      "firstName": "Branimir",
+      "lastName": "Nestorovic",
+      "doctor": 1,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+39781123112",
+          "street": "Piazza Risorgimento 44",
+          "city": "Rome",
+          "zipcode": "00195",
+          "country": "Italy"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "registeredDate": "2018-10-16T13:51:28Z",
+      "firstName": "Elico",
+      "lastName": "Maikenberg",
+      "doctor": 4,
+      "addresses": [
+        {
+          "type": "HOME",
+          "email": "aaa@bb.com",
+          "phone": "+39781123112",
+          "street": "Piazza Risorgimento 44",
+          "city": "Rome",
+          "zipcode": "00195",
+          "country": "Italy"
+        }
+      ]
+    }
+  ]
+}

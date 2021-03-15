@@ -9,9 +9,18 @@ import { ListPatientsComponent } from './list-patients.component';
 import { MatTableModule } from '@angular/material/table';
 import { ShowPatientComponent } from './show-patient/show-patient.component';
 import { MatCardModule } from '@angular/material/card';
+import { SharedModule } from '@app/@shared';
 
 @NgModule({
-  imports: [CommonModule, MatCardModule, FlexLayoutModule, MaterialModule, MatTableModule, ListPatientsRoutingModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MaterialModule,
+    MatTableModule,
+    ListPatientsRoutingModule,
+  ],
   declarations: [ListPatientsComponent, ShowPatientComponent],
 })
 export class ListPatientsModule {}
