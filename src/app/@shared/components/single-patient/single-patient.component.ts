@@ -90,14 +90,18 @@ export class SinglePatientComponent implements OnInit, OnChanges {
     }
 
     if (age >= 18) {
+      this.advancedForm.get('vatCode').markAsTouched();
       return this.advancedForm.get('vatCode').setErrors({ age: age });
     }
+    this.advancedForm.get('vatCode').reset();
     return this.advancedForm.get('vatCode').setErrors(null);
   }
 
   onEdit(): void {
     this.mode = 'edit';
+    this.title = 'Edit Patient';
     this.advancedForm.enable();
+    window.scrollTo(0, 0);
   }
 
   onPatientAction(mode: string): void {
@@ -107,6 +111,12 @@ export class SinglePatientComponent implements OnInit, OnChanges {
     this.actionMode.emit(mode);
     if (mode !== 'save') {
       this.advancedForm.addControl('id', new FormControl(this.patient.id));
+    }
+    if (mode !== 'delete') {
+      this.f.controls.forEach((element) => {
+        const phone = element.get('phone').value;
+        element.get('phone').patchValue(phone.replace(/\s/g, ''));
+      });
     }
     this.emitPatient.emit(this.advancedForm.value);
   }

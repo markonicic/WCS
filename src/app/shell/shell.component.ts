@@ -2,8 +2,8 @@ import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MediaObserver } from '@angular/flex-layout';
-
-import { AuthenticationService, CredentialsService } from '@app/auth';
+import { AuthenticationService } from '@app/auth/authentication.service';
+import { CredentialsService } from '@app/auth/credentials.service';
 
 @Component({
   selector: 'app-shell',
