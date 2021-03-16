@@ -23,6 +23,7 @@ export class ShowPatientComponent implements OnInit {
   title: string;
   mode: string;
   patientId: number;
+  patientMode: string;
 
   constructor(
     private listPatientsService: ListPatientsService,
@@ -45,16 +46,27 @@ export class ShowPatientComponent implements OnInit {
     });
   }
 
-  editPatient(e: any): void {
-    const choosenDoktor = e.doctor;
-    this.doctors.filter((data) => {
-      const element = data.firstName + ' ' + data.lastName + ', ' + data.title;
-      if (element === choosenDoktor) {
-        e.doctor = data.id;
-      }
-    });
+  actionMode(e: any): void {
+    this.patientMode = e;
+  }
 
-    console.log('edit patient', e);
+  onPatientAction(e: any): void {
+    if (this.patientMode === 'delete') {
+      this.listPatientsService.deleteSinglePatient(e.id).subscribe((data) => {
+        this.router.navigateByUrl('/list-patients');
+      });
+    } else {
+      const choosenDoktor = e.doctor;
+      this.doctors.filter((data) => {
+        const element = data.firstName + ' ' + data.lastName + ', ' + data.title;
+        if (element === choosenDoktor) {
+          e.doctor = data.id;
+        }
+      });
+      this.listPatientsService.editSinglePatient(e.id, e).subscribe((data) => {
+        this.router.navigateByUrl('/list-patients');
+      });
+    }
   }
 
   deletePatient(e: boolean): void {

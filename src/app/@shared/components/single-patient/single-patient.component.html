@@ -187,34 +187,18 @@
       </form>
     </div>
     <hr />
-    <div class="contols">
-      <button
-        mat-raised-button
-        color="warn"
-        type="submit"
-        [disabled]="!advancedForm.valid"
-        *ngIf="mode !== 'new'"
-        (click)="savePatient()"
-      >
+    <div class="contols" *appHasRole="'ADMIN'">
+      <button mat-raised-button color="warn" type="submit" *ngIf="mode == 'show'" (click)="onPatientAction('delete')">
         DELETE
       </button>
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="!advancedForm.valid"
-        *ngIf="mode !== 'new'"
-        (click)="savePatient()"
-      >
-        EDIT
-      </button>
+      <button mat-raised-button color="primary" type="submit" *ngIf="mode === 'show'" (click)="onEdit()">EDIT</button>
       <button
         mat-raised-button
         color="primary"
         type="submit"
         [disabled]="!advancedForm.valid"
         *ngIf="mode !== 'show'"
-        (click)="savePatient()"
+        (click)="onPatientAction('save')"
       >
         SAVE
       </button>

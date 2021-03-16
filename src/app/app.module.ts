@@ -9,13 +9,14 @@ import { MaterialModule } from './material.module';
 
 import { environment } from '@env/environment';
 import { CoreModule } from '@core';
-import { SharedModule } from '@shared';
+// import { SharedModule } from '@shared';
 import { AuthModule } from '@app/auth';
 import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AddPatientComponent } from './add-patient/add-patient.component';
+import { SharedModule } from './@shared/shared.module';
 
 @NgModule({
   imports: [

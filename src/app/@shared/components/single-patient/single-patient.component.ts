@@ -20,6 +20,7 @@ export class SinglePatientComponent implements OnInit, OnChanges {
   filteredDoctors: Doctors[];
 
   @Output() emitPatient = new EventEmitter();
+  @Output() actionMode = new EventEmitter();
 
   addressTypes = [
     { title: 'Home', value: 'HOME' },
@@ -42,7 +43,7 @@ export class SinglePatientComponent implements OnInit, OnChanges {
     if (this.patient && this.doctors) {
       let dataForm: any = this.patient;
       this.doctors.find((data) => {
-        if (data.id === this.patient.id) {
+        if (data.id === this.patient.doctor) {
           dataForm.doctor = data.firstName + ' ' + data.lastName + ', ' + data.title;
         }
       });
@@ -94,7 +95,19 @@ export class SinglePatientComponent implements OnInit, OnChanges {
     return this.advancedForm.get('vatCode').setErrors(null);
   }
 
-  savePatient(): void {
+  onEdit(): void {
+    this.mode = 'edit';
+    this.advancedForm.enable();
+  }
+
+  onPatientAction(mode: string): void {
+    if (this.mode === 'edit') {
+      mode = this.mode;
+    }
+    this.actionMode.emit(mode);
+    if (mode !== 'save') {
+      this.advancedForm.addControl('id', new FormControl(this.patient.id));
+    }
     this.emitPatient.emit(this.advancedForm.value);
   }
 

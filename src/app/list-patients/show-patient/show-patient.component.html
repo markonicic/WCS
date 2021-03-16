@@ -3,5 +3,6 @@
   [doctors]="doctors"
   [mode]="'show'"
   [patient]="patient"
-  (emitPatient)="editPatient($event)"
+  (emitPatient)="onPatientAction($event)"
+  (actionMode)="actionMode($event)"
 ></app-single-patient>

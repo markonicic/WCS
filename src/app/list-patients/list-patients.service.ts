@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Patients } from '@app/@shared/interfaces/patients.model';
@@ -13,6 +13,11 @@ export class ListPatientsService {
 
   deleteSinglePatient(id: number): Observable<Patient> {
     return this.http.delete<Patient>(`http://localhost:3000/patients/${id}`);
+  }
+
+  editSinglePatient(id: number, data: Patient): Observable<Patient> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put<Patient>(`http://localhost:3000/patients/${id}`, JSON.stringify(data), { headers: headers });
   }
 
   getSinglePatient(id: number): Observable<Patient> {

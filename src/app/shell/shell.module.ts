@@ -8,9 +8,20 @@ import { I18nModule } from '@app/i18n';
 import { MaterialModule } from '@app/material.module';
 import { AuthModule } from '@app/auth';
 import { ShellComponent } from './shell.component';
+import { SharedModule } from '@app/@shared/shared.module';
+// import { SharedModule } from '@app/@shared';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, FlexLayoutModule, MaterialModule, AuthModule, I18nModule, RouterModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FlexLayoutModule,
+    MaterialModule,
+    AuthModule,
+    I18nModule,
+    RouterModule,
+    SharedModule,
+  ],
   declarations: [ShellComponent],
 })
 export class ShellModule {}

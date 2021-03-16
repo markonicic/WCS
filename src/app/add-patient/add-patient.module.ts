@@ -13,7 +13,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { SharedModule } from '@app/@shared';
+import { SharedModule } from '@app/@shared/shared.module';
+// import { SharedModule } from '@app/@shared';
 
 @NgModule({
   imports: [

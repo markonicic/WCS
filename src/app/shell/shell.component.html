@@ -26,11 +26,23 @@
             <span translate>Home</span>
           </a>
           <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/add-patient" routerLinkActive="active" (click)="sidenav.close()">
+          <a
+            mat-list-item
+            routerLink="/add-patient"
+            routerLinkActive="active"
+            (click)="sidenav.close()"
+            *appHasRole="'ADMIN'"
+          >
             <span translate>Add New Patient</span>
           </a>
           <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/list-patients" routerLinkActive="active" (click)="sidenav.close()">
+          <a
+            mat-list-item
+            routerLink="/list-patients"
+            routerLinkActive="active"
+            (click)="sidenav.close()"
+            *appHasRole="'ADMIN,USER'"
+          >
             <span translate>List Patients</span>
           </a>
           <mat-divider></mat-divider>
